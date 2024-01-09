@@ -1,0 +1,29 @@
+---
+interface Props {
+	navTo: string;
+	title: string;
+}
+
+const { navTo, title } = Astro.props;
+---
+
+<li data-navto={navTo} class="navItem">{title}</li>
+
+<script>
+	document.querySelectorAll(".navItem").forEach(navItem => {
+		navItem.addEventListener("click", (e) => {
+			const navTo = e.target.dataset.navto
+			const position = document.querySelector(`#${navTo}`).getBoundingClientRect()
+			window.scrollTo({
+				top: position.top,
+				behavior: "smooth"
+			})
+		})
+	})
+</script>
+
+<style>
+	li {
+		list-style-type: none;
+	}
+</style>
