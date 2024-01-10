@@ -1,22 +1,14 @@
----
-
----
-
-<div class="outerWrapper">
-	<nav>
-		<ul>
-			<slot>
-		</ul>
-	</nav>
-</div>
+<nav>
+	<ul>
+		<slot />
+	</ul>
+</nav>
 
 <style>
-	.outerWrapper {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100vw;
+	nav {
+		margin-top: var(--tinyMargin);
 	}
+
 	ul {
 		display: flex;
 		gap: 25px;

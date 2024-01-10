@@ -1,35 +1,64 @@
 ---
 interface Props {
 	title: string;
+	description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="images/heart.png" />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="wrapper">
+			<slot />
+		</div>
 	</body>
 </html>
 <style is:global>
 	:root {
-		--lilac: #DDCECD;
+		--lilac: #E6DCDB;
+		--white: white;
+		--black: black;
+
+		--tinyMargin: 30px;
+		--smallMargin: 50px;
+		--mediumMargin: 70px;
+		--largeMargin: 90px;
 	}
+
+	@font-face {
+		font-family: BalginExtraLightCondensed;
+		src: url('fonts/balgin-extra-light-condensed.ttf');
+	}
+
 	* {
 		margin: 0;
 		padding: 0;
 	}
+
 	html {
-		
-		font-family: system-ui, sans-serif;
+		font-family: BalginExtraLightCondensed;
+		font-size: 25px;
 		background-color: var(--lilac);
+		white-space: pre-line;
+	}
+
+	h1 {
+		font-weight: normal;
+	}
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100vw;
 	}
 </style>

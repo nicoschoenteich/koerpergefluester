@@ -1,0 +1,7 @@
+---
+applications:
+- name: koerpergefluester
+  buildpack: staticfile_buildpack
+  memory: 256M
+  disk_quota: 256M
+  path: dist

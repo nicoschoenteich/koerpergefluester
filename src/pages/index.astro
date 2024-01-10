@@ -1,38 +1,77 @@
 ---
 import Card from "../components/Card.astro";
+import Heart from "../components/Heart.astro";
+import Image from "../components/Image.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/NavBar.astro";
 import NavItem from "../components/NavItem.astro";
 
 const content = {
+	title: "körpergeflüster",
+	description: "Yoga by Sandra Geburek",
+	images: [
+		"sandra.jpg",
+		"sandra.jpg",
+		"sandra.jpg",
+		"sandra.jpg",
+		"sandra.jpg"
+	],
 	cards: [
+		{
+			id: "intro",
+			title: "Yoga by Sandra Geburek",
+			body: "Mit KÖRPERGEFLÜSTER möchte ich einen Raum öffnen, für alle die Lust auf Yoga haben, die mit Herz praktizieren wollen, sich spüren und zuhören wollen, ganz gleich wo auf der Welt sie sich gerade befinden. \n \n Einen Raum für eine regelmäßige Praxis in der wir gemeinsam wachsen dürfen. Einen Raum in dem wir sicher praktizieren, frei von Sollen und Müssen… Yoga in seiner einfachsten und reinsten Art. Sanft angeleitet und kraftvoll begleitet."
+		},
 		{
 			id: "kurse",
 			title: "Kurse",
-			body: "Learn...",
+			body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat finibus dui, tempus sollicitudin leo consectetur vel. Vivamus et dapibus enim",
 		},
 		{
 			id: "sessions",
 			title: "1:1 Sessions",
-			body: "Learn...",
+			body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat finibus dui, tempus sollicitudin leo consectetur vel. Vivamus et dapibus enim",
+		},
+		{
+			id: "kontakt",
+			title: "Kontakt",
+			body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat finibus dui, tempus sollicitudin leo consectetur vel. Vivamus et dapibus enim",
 		}
 	]
 };
 ---
 
-<Layout title="körpergeflüster">
+<Layout title={content.title} description={content.description}>
 	<NavBar>
 		{
-			content.cards.map(card => {
-				return (
-					<NavItem 
-						navTo = {card.id} 
-						title = {card.title}
-					/>
-				)
+			content.cards.map((card, i) => {
+				if (i !== 0) {
+					return (
+						<NavItem 
+							navTo = {card.id} 
+							title = {card.title}
+						/>
+					)
+				}
 			})
 		}
 	</NavBar>
+
+	<Heart></Heart>
+
+	<h1>{content.title}</h1>
+
+	<ImageCarousel>
+		{
+			content.images.map(image => {
+				return (
+					<Image image={image} />
+				)
+			})
+		}
+	</ImageCarousel>
+
 	{
 		content.cards.map((card) => {
 			return (
@@ -45,5 +84,3 @@ const content = {
 		})
 	}
 </Layout>
-
-<style></style>

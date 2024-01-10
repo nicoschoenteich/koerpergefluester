@@ -12,7 +12,7 @@ const { navTo, title } = Astro.props;
 <script>
 	document.querySelectorAll(".navItem").forEach(navItem => {
 		navItem.addEventListener("click", (e) => {
-			const navTo = e.target.dataset.navto
+			const navTo = (e.target as HTMLElement).dataset.navto
 			const position = document.querySelector(`#${navTo}`).getBoundingClientRect()
 			window.scrollTo({
 				top: position.top,
@@ -25,5 +25,10 @@ const { navTo, title } = Astro.props;
 <style>
 	li {
 		list-style-type: none;
+		cursor: pointer;
+	}
+
+	li:hover {
+		text-decoration: underline;
 	}
 </style>

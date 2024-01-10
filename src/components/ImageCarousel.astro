@@ -1,0 +1,21 @@
+---
+const content = {
+    images: [
+        "sandra.jpg"
+    ]
+}
+---
+
+<div class="imageWrapper">
+    <slot />
+</div>
+
+<style>
+    .imageWrapper {
+        width: 100vw;
+        display: flex;
+        overflow: scroll;
+
+        margin-top: var(--smallMargin);
+    }
+</style>
