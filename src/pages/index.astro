@@ -43,7 +43,7 @@ const content = {
 ---
 
 <Layout title={content.title} description={content.description}>
-	<NavBar>
+	<NavBar title={content.title}>
 		{
 			content.cards.map((card, i) => {
 				if (i !== 0) {
@@ -61,8 +61,6 @@ const content = {
 	<div style="height: 65px;"></div>
 
 	<Heart></Heart>
-
-	<h1>{content.title}</h1>
 
 	<ImageCarousel>
 		{
