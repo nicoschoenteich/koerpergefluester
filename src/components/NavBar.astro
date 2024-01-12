@@ -9,14 +9,15 @@
 </nav>
 
 <script>
+	const navBar = document.querySelector("nav") as HTMLElement
 	const menuIcon = document.querySelector("#menuIcon") as HTMLElement
     menuIcon.addEventListener("click", () => {
 		const menuIcon =  document.querySelector("#menuIcon")
         menuIcon.classList.toggle("close")
-        menuIcon.parentElement.classList.toggle("fullScreen")
+        navBar.classList.toggle("fullScreen")
 	})
 
-	document.querySelector("nav").querySelectorAll("a").forEach(a => {
+	navBar.querySelectorAll("a").forEach(a => {
 		a.addEventListener("click", (e) => {
 			const link = e.target as HTMLElement
 			const navTo = link.dataset.navto
@@ -25,7 +26,7 @@
 				top: position.top,
 				behavior: "smooth"
 			})
-			if (link.parentElement.classList.contains("fullScreen")) {
+			if (navBar.classList.contains("fullScreen")) {
 				menuIcon.click()
 			}
 		})
@@ -50,35 +51,16 @@
 		transition: right 0.5s;
 	}
 
-	ul {
-		display: flex;
-		gap: 25px;
-	}
-
-	@media only screen and (max-width: 700px) {
-		#menuIcon {
-			opacity: 1 !important;
-		}
-		nav {
-			flex-direction: column;
-			height: 100%;
-			width: 100%;
-		}
-		nav:not(.fullScreen) {
-			right: -100%;
-		}
-		nav.fullScreen {
-			right: 0;
-		}
-	}
-
 	#menuIcon {
 		position: fixed;
 		right: 0;
-		top: 40px;
+		top: 25px;
 		height: 20px;
 		width: 25px;
-		margin-right: 25px;
+		margin-right: 10px;
+		/* outline: 15px solid var(--lilac); */
+		background-color: var(--lilac);
+		padding: 15px;
 
 		opacity: 0;
 		display: flex;
@@ -119,4 +101,21 @@
 	#menuIcon.close .third {
 		transform: translateX(2px) rotate(-45deg);
 	}
+
+	@media only screen and (max-width: 700px) {
+		#menuIcon {
+			opacity: 1 !important;
+		}
+		nav {
+			flex-direction: column;
+			height: 100%;
+		}
+		nav:not(.fullScreen) {
+			right: -100%;
+		}
+		nav.fullScreen {
+			right: 0;
+		}
+	}
+
 </style>
