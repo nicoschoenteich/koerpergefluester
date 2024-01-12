@@ -1,16 +1,122 @@
 <nav>
-	<ul>
-		<slot />
-	</ul>
+	<div id="menuIcon">
+		<div class="first"></div>
+		<div class="second"></div>
+		<div class="third"></div>
+	</div>
+
+	<slot />
 </nav>
 
+<script>
+	const menuIcon = document.querySelector("#menuIcon") as HTMLElement
+    menuIcon.addEventListener("click", () => {
+		const menuIcon =  document.querySelector("#menuIcon")
+        menuIcon.classList.toggle("close")
+        menuIcon.parentElement.classList.toggle("fullScreen")
+	})
+
+	document.querySelector("nav").querySelectorAll("a").forEach(a => {
+		a.addEventListener("click", (e) => {
+			const link = e.target as HTMLElement
+			const navTo = link.dataset.navto
+			const position = document.querySelector(`#${navTo}`).getBoundingClientRect()
+			window.scrollTo({
+				top: position.top,
+				behavior: "smooth"
+			})
+			if (link.parentElement.classList.contains("fullScreen")) {
+				menuIcon.click()
+			}
+		})
+	})
+</script>
+
 <style>
+
 	nav {
-		margin-top: var(--tinyMargin);
+		position: fixed;
+		top: 0;
+		right: 0;
+		background-color: var(--lilac);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		width: 100%;
+		height: 100px;
+		z-index: 1;
+
+		transition: right 0.5s;
 	}
 
 	ul {
 		display: flex;
 		gap: 25px;
+	}
+
+	@media only screen and (max-width: 700px) {
+		#menuIcon {
+			opacity: 1 !important;
+		}
+		nav {
+			flex-direction: column;
+			height: 100%;
+			width: 100%;
+		}
+		nav:not(.fullScreen) {
+			right: -100%;
+		}
+		nav.fullScreen {
+			right: 0;
+		}
+	}
+
+	#menuIcon {
+		position: fixed;
+		right: 0;
+		top: 40px;
+		height: 20px;
+		width: 25px;
+		margin-right: 25px;
+
+		opacity: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	#menuIcon div {
+		width: 100%;
+		height: 3px;
+		background-color: black;
+		transition:
+			transform 0.5s,
+			width 0.2s;
+	}
+
+	#menuIcon:hover {
+		cursor: pointer;
+	}
+
+	#menuIcon .first {
+		transform-origin: top left;
+	}
+
+	#menuIcon.close .first {
+		transform: translateX(2px) rotate(45deg);
+	}
+
+	#menuIcon.close .second {
+		width: 0px;
+	}
+
+	#menuIcon .third {
+		transform-origin: bottom left;
+	}
+
+	#menuIcon.close .third {
+		transform: translateX(2px) rotate(-45deg);
 	}
 </style>

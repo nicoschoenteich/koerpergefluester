@@ -9,7 +9,7 @@ import NavItem from "../components/NavItem.astro";
 
 const content = {
 	title: "körpergeflüster",
-	description: "Yoga by Sandra Geburek",
+	description: "by Sandra Geburek",
 	images: [
 		"sandra.jpg",
 		"sandra.jpg",
@@ -20,7 +20,7 @@ const content = {
 	cards: [
 		{
 			id: "intro",
-			title: "Yoga by Sandra Geburek",
+			title: "by Sandra Geburek",
 			body: "Mit KÖRPERGEFLÜSTER möchte ich einen Raum öffnen, für alle die Lust auf Yoga haben, die mit Herz praktizieren wollen, sich spüren und zuhören wollen, ganz gleich wo auf der Welt sie sich gerade befinden. \n \n Einen Raum für eine regelmäßige Praxis in der wir gemeinsam wachsen dürfen. Einen Raum in dem wir sicher praktizieren, frei von Sollen und Müssen… Yoga in seiner einfachsten und reinsten Art. Sanft angeleitet und kraftvoll begleitet."
 		},
 		{
@@ -58,6 +58,8 @@ const content = {
 		}
 	</NavBar>
 
+	<div class="spacer"></div>
+
 	<Heart></Heart>
 
 	<h1>{content.title}</h1>
@@ -84,3 +86,9 @@ const content = {
 		})
 	}
 </Layout>
+
+<style>
+	.spacer {
+		height: 65px;
+	}
+</style>

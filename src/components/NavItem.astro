@@ -7,28 +7,19 @@ interface Props {
 const { navTo, title } = Astro.props;
 ---
 
-<li data-navto={navTo} class="navItem">{title}</li>
+<a data-navto={navTo}>{title}</a>
 
 <script>
-	document.querySelectorAll(".navItem").forEach(navItem => {
-		navItem.addEventListener("click", (e) => {
-			const navTo = (e.target as HTMLElement).dataset.navto
-			const position = document.querySelector(`#${navTo}`).getBoundingClientRect()
-			window.scrollTo({
-				top: position.top,
-				behavior: "smooth"
-			})
-		})
-	})
+
 </script>
 
 <style>
-	li {
+	a {
 		list-style-type: none;
 		cursor: pointer;
 	}
 
-	li:hover {
+	a:hover {
 		text-decoration: underline;
 	}
 </style>
