@@ -7,26 +7,29 @@ const { title } = Astro.props;
 ---
 
 <nav>
-	<h1>{title}</h1>
-
-	<div id="menuIcon">
-		<div class="first"></div>
-		<div class="second"></div>
-		<div class="third"></div>
+	<div class="burgerBar">
+		<h1>{title}</h1>
+		<div id="burger">
+			<div class="first"></div>
+			<div class="second"></div>
+			<div class="third"></div>
+		</div>
 	</div>
 
-	<ul>
-		<slot />
-	</ul>
-	
+	<div class="itemWrapper">
+		<h1>{title}</h1>
+		<ul>
+			<slot />
+		</ul>
+	</div>
 </nav>
 
 <script>
 	const navBar = document.querySelector("nav") as HTMLElement
-	const menuIcon = document.querySelector("#menuIcon") as HTMLElement
-    menuIcon.addEventListener("click", () => {
-		const menuIcon =  document.querySelector("#menuIcon")
-        menuIcon.classList.toggle("close")
+	const burger = document.querySelector("#burger") as HTMLElement
+    burger.addEventListener("click", () => {
+		const burger =  document.querySelector("#burger")
+        burger.classList.toggle("close")
         navBar.classList.toggle("fullScreen")
 	})
 
@@ -40,7 +43,7 @@ const { title } = Astro.props;
 				behavior: "smooth"
 			})
 			if (navBar.classList.contains("fullScreen")) {
-				menuIcon.click()
+				burger.click()
 			}
 		})
 	})
@@ -53,13 +56,35 @@ const { title } = Astro.props;
 		top: 0;
 		right: 0;
 		background-color: var(--lilac);
+		height: 100px;
+		width: 100%;
+		z-index: 1;
+		transition: right 0.5s;
+		
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.burgerBar {
+		position: fixed;
+		top: 0;
+		right: 0;
+		background-color: inherit;
+		height: 100px;
+		width: 100%;
+
+		display: none;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.itemWrapper {
+		width: 100%;
+
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 100%;
-		height: 100px;
-		z-index: 1;
-		transition: right 0.5s;
 	}
 
 	h1 {
@@ -73,25 +98,19 @@ const { title } = Astro.props;
 		margin-right: var(--tinyMargin);
 	}
 
-	#menuIcon {
-		position: fixed;
-		right: 0;
-		top: 25px;
+	#burger {
 		height: 20px;
 		width: 25px;
-		margin-right: 10px;
-		/* outline: 15px solid var(--lilac); */
-		background-color: var(--lilac);
-		padding: 15px;
+		margin-right: var(--tinyMargin);
+		cursor: pointer;
 
-		opacity: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-start;
 	}
 
-	#menuIcon div {
+	#burger div {
 		width: 100%;
 		height: 3px;
 		background-color: black;
@@ -100,39 +119,38 @@ const { title } = Astro.props;
 			width 0.2s;
 	}
 
-	#menuIcon .first {
+	#burger .first {
 		transform-origin: top left;
 	}
 
-	#menuIcon.close .first {
+	#burger.close .first {
 		transform: translateX(2px) rotate(45deg);
 	}
 
-	#menuIcon.close .second {
+	#burger.close .second {
 		width: 0px;
 	}
 
-	#menuIcon .third {
+	#burger .third {
 		transform-origin: bottom left;
 	}
 
-	#menuIcon.close .third {
+	#burger.close .third {
 		transform: translateX(2px) rotate(-45deg);
 	}
 
-	@media only screen and (max-width: 700px) {
-		#menuIcon {
-			opacity: 1 !important;
-			cursor: pointer;
-		}
+	@media only screen and (max-width: 600px) {
 		nav {
 			height: 100%;
-			justify-content: center;
-			gap: var(--mediumMargin);
-			flex-direction: column;
 		}
-		h1 {
-			margin-left: 0;
+		.burgerBar {
+			display: flex;
+		}
+		.itemWrapper {
+			justify-content: center;
+		}
+		.itemWrapper h1 {
+			display: none;
 		}
 		ul {
 			margin-right: 0;
