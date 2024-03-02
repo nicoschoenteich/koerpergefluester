@@ -10,10 +10,20 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="theme-color" content="#E6DCDB" />
+		<meta name="HandheldFriendly" content="true" />
+		<link rel="manifest" href="pwa/pwa.json" />
+
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="images/heart4.png" />
+
+		<link href="images/logo.png" rel="shortcut icon" type="image/x-icon" />
+		<link href="images/logo.png" rel="apple-touch-icon" type="image/png" />
+
 		<title>{title}</title>
 	</head>
 	<body>

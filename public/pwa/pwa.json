@@ -1,0 +1,15 @@
+{
+    "short_name": "Körpergeflüster",
+    "name": "Körpergeflüster",
+    "description": "Körpergeflüster",
+    "display": "fullscreen",
+    "background_color": "#E6DCDB",
+    "theme_color": "#E6DCDB",
+    "start_url": "./",
+    "icons": [
+        {
+            "src": "../images/logo.png",
+            "sizes": "any"
+          }
+    ]
+}
